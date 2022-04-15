@@ -6,10 +6,10 @@
     "configurations": [
         {
             "type": "java",
-            "mainClass": "MarkdownParse",
-            "name": "Launch with args",
+            "name": "Launch with Arguments Prompt",
             "request": "launch",
+            "mainClass": "",
             "args": "breakingTests.md"
-        }
+        },
     ]
 }

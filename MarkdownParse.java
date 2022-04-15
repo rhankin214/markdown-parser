@@ -10,6 +10,8 @@ public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
+        // unsafe url characters: "{", "}", "|", "\", "^", "~", "[", "]", " ", and "`"
+        // if one of these characters exists before the close parens, we assume the url is overs
         int currentIndex = 0;
         String parenString = "";
         while(currentIndex < markdown.length()) {
@@ -20,13 +22,20 @@ public class MarkdownParse {
             
             if(closeBracket == -1 || openBracket == -1 || closeParen == -1|| openParen == -1)
                 break;
-            else if (!(openBracket > 0 && markdown.charAt(openBracket -1) == ('!')))
+            try
+            {
+                if (!(markdown.substring(openBracket - 1, openBracket).equals("!"))) //only add it if it's not an image
+                {
+                    toReturn.add(markdown.substring(openParen + 1, closeParen));
+                }
+            }
+            //if open bracket is at index 0, that it's a link and not an image so run as normal.
+            catch(IndexOutOfBoundsException e)
             {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
             }
+            currentIndex = closeParen + 1;
         }
-
         return toReturn;
     }
 
