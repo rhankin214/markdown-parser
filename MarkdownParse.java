@@ -29,7 +29,7 @@ public class MarkdownParse {
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
                 }
             }
-            //if open bracket is at index 0, that it's a link and not an image so run as normal.
+            //if open bracket is at index 0, then it's a link and not an image so run as normal.
             catch(IndexOutOfBoundsException e)
             {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
