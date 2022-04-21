@@ -13,7 +13,7 @@ public class MarkdownParse {
         // unsafe url characters: "{", "}", "|", "\", "^", "~", "[", "]", " ", and "`"
         // if one of these characters exists before the close parens, we assume the url is overs
         int currentIndex = 0;
-        String parenString = "";
+        
         while(currentIndex < markdown.length()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
