@@ -1,6 +1,9 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.junit.*;
 public class MarkdownParseTest {
@@ -18,10 +21,12 @@ public class MarkdownParseTest {
         assertEquals(2, 1 + 1);
     }
     @Test
-    public void getLinksTestFile(){
+    public void getLinksTestFile() throws IOException{
         expectedLinks.add("https://something.com");
         expectedLinks.add("some-thing.html");
-        gottenLinks = mrkdwnPrse.getLinks("test-file.md");
+        Path fileName = Path.of("test-file.md");
+        String content = Files.readString(fileName);
+        gottenLinks = mrkdwnPrse.getLinks(content);
         for(int i = 0; i < expectedLinks.size(); i++)
         {
             assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
