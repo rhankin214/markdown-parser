@@ -42,7 +42,74 @@ public class MarkdownParseTest {
         expectedLinks.add("linkwithaspace.html");
         
         gottenLinks = getGottenLinks("breakingTests.md");
-        for(int i = 0; i < expectedLinks.size(); i++)
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile2() throws IOException{
+        expectedLinks.add("https://something.com");
+        expectedLinks.add("some-page.html");
+        gottenLinks = getGottenLinks("test-file2.md");
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile3() throws IOException{
+        gottenLinks = getGottenLinks("test-file3.md");
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile4() throws IOException{
+        gottenLinks = getGottenLinks("test-file4.md");
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile5() throws IOException{
+        gottenLinks = getGottenLinks("test-file5.md");
+        System.out.println(gottenLinks);
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile6() throws IOException{
+        gottenLinks = getGottenLinks("test-file6.md");
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile7() throws IOException{
+        gottenLinks = getGottenLinks("test-file7.md");
+        for(int i = 0; i < gottenLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinkTestFile8() throws IOException{
+        expectedLinks.add("a link on the first line");
+        gottenLinks = getGottenLinks("test-file8.md");
+        for(int i = 0; i < gottenLinks.size(); i++)
         {
             assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
                 gottenLinks.get(i));
