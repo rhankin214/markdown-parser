@@ -20,13 +20,28 @@ public class MarkdownParseTest {
     public void addition() {
         assertEquals(2, 1 + 1);
     }
+    public ArrayList<String> getGottenLinks (String fileName) throws IOException
+    {
+        Path filePath = Path.of(fileName);
+        String content = Files.readString(filePath);
+        return mrkdwnPrse.getLinks(content);
+    }
     @Test
     public void getLinksTestFile() throws IOException{
         expectedLinks.add("https://something.com");
         expectedLinks.add("some-thing.html");
-        Path fileName = Path.of("test-file.md");
-        String content = Files.readString(fileName);
-        gottenLinks = mrkdwnPrse.getLinks(content);
+        gottenLinks = getGottenLinks("test-file.md");
+        for(int i = 0; i < expectedLinks.size(); i++)
+        {
+            assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
+                gottenLinks.get(i));
+        }
+    }
+    @Test
+    public void getLinksbreakingTests() throws IOException{
+        expectedLinks.add("linkwithaspace.html");
+        
+        gottenLinks = getGottenLinks("breakingTests.md");
         for(int i = 0; i < expectedLinks.size(); i++)
         {
             assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
