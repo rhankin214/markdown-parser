@@ -22,17 +22,20 @@ public class MarkdownParse {
             
             if(closeBracket == -1 || openBracket == -1 || closeParen == -1|| openParen == -1)
                 break;
-            try
+            if(openParen - closeBracket == 1) //only add if the openParen and closeBracket are adjacent
             {
-                if (!(markdown.substring(openBracket - 1, openBracket).equals("!"))) //only add it if it's not an image
+                try
+                {
+                    if (!(markdown.substring(openBracket - 1, openBracket).equals("!"))) //only add it if it's not an image
+                    {
+                        toReturn.add(markdown.substring(openParen + 1, closeParen));
+                    }
+                }
+                //if open bracket is at index 0, then it's a link and not an image so run as normal.
+                catch(IndexOutOfBoundsException e)
                 {
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
                 }
-            }
-            //if open bracket is at index 0, then it's a link and not an image so run as normal.
-            catch(IndexOutOfBoundsException e)
-            {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
             }
             currentIndex = closeParen + 1;
         }
