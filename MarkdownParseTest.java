@@ -51,7 +51,7 @@ public class MarkdownParseTest {
     @Test
     public void getLinkTestFile2() throws IOException{
         expectedLinks.add("https://something.com");
-        expectedLinks.add("some-page.html");
+        
         gottenLinks = getGottenLinks("test-file2.md");
         for(int i = 0; i < gottenLinks.size(); i++)
         {
