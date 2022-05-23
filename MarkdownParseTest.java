@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 import java.util.ArrayList;
+import java.beans.Transient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -47,6 +48,30 @@ public class MarkdownParseTest {
             assertEquals(i + "th link didn't match for test-file", expectedLinks.get(i), 
                 gottenLinks.get(i));
         }
+    }
+    @Test
+    public void testBackticks() throws IOException
+    {
+        expectedLinks.add("'google.com");
+        expectedLinks.add("google.com");
+        expectedLinks.add("ucsd.edu");
+        gottenLinks = getGottenLinks("test-backticks.md");
+        assertEquals(expectedLinks, gottenLinks);
+    }
+    @Test
+    public void testLong() throws IOException
+    {
+        expectedLinks.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+        gottenLinks = getGottenLinks("test-long.md");
+        assertEquals(expectedLinks, gottenLinks);
+    }
+    @Test
+    public void testNested() throws IOException{
+        expectedLinks.add("a.com");
+        expectedLinks.add("a.com(())");
+        expectedLinks.add("example.com");
+        gottenLinks = getGottenLinks("test-nestedLinks.md");
+        assertEquals(expectedLinks, gottenLinks);
     }
     @Test
     public void getLinkTestFile2() throws IOException{
