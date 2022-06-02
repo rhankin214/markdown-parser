@@ -16,6 +16,7 @@ public class MarkdownParseTest {
     {
         gottenLinks = new ArrayList<String>();
         expectedLinks = new ArrayList<String>();
+        
     }
     @Test
     public void addition() {
